@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.JsonEncoder">
+            <pattern>
+                {
+                "timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
+                "applicationName": "${springAppName:-}",
+                "severity": "%level",
+                "transactionId": "%X{traceId:-}",
+                "processId": "%X{spanId:-}",
+                "thread": "%thread",
+                "logger": "%logger",
+                "runDate": "%X{runDate:-}",
+                "message": "%message"
+                }
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="AZURE" class="com.prada.demoFunctionsLog.config.AzureBlobAppender">
+        <connectionString>DefaultEndpointsProtocol=https;AccountName=pgdistsplunkdevwe;AccountKey=j0VN0btEzpVsV3JiuQsWM01wE1sFQY7dddV/IXaj40BxfYs1OL/2qxPCUnUq4OrhAsL72RgSYwX3+AStXb/4/g==;EndpointSuffix=core.windows.net</connectionString>
+        <containerName>splunk-logs-test</containerName>
+        <componentName>demoFunction</componentName>
+        <blobName>hub-functions-logs/demoFunctionLog</blobName>
+        <maxSize>1048576</maxSize> <!-- Set to 1 MB (1 MB = 1024 * 1024 bytes) -->
+        <encoder class="ch.qos.logback.classic.encoder.JsonEncoder">
+            <pattern>
+                {
+                "timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
+                "applicationName": "${springAppName:-}",
+                "severity": "%level",
+                "transactionId": "%X{traceId:-}",
+                "processId": "%X{spanId:-}",
+                "thread": "%thread",
+                "logger": "%logger",
+                "runDate": "%X{runDate:-}",
+                "message": "%message"
+                }
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="ASYNC_AZURE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="AZURE" />
+        <queueSize>500</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ASYNC_AZURE" />
+        <appender-ref ref="json" />
+    </root>
+</configuration>

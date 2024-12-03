@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=pgdistsplunkdevwe;AccountKey=j0VN0btEzpVsV3JiuQsWM01wE1sFQY7dddV/IXaj40BxfYs1OL/2qxPCUnUq4OrhAsL72RgSYwX3+AStXb/4/g==;EndpointSuffix=core.windows.net",
+    "FUNCTIONS_WORKER_RUNTIME": "java",
+    "FUNCTIONS_EXTENSION_VERSION": "~4",
+    "MAIN_CLASS": "com.prada.demoFunctionsLog.DemoFunctionsLogApplication"
+  }
+}
