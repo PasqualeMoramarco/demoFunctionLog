@@ -19,7 +19,7 @@
     </appender>
 
     <appender name="AZURE" class="com.prada.demoFunctionsLog.config.AzureBlobAppender">
-        <connectionString>DefaultEndpointsProtocol=https;AccountName=pgdistsplunkdevwe;AccountKey=j0VN0btEzpVsV3JiuQsWM01wE1sFQY7dddV/IXaj40BxfYs1OL/2qxPCUnUq4OrhAsL72RgSYwX3+AStXb/4/g==;EndpointSuffix=core.windows.net</connectionString>
+        <connectionString>DefaultEndpointsProtocol=https;AccountName=pgdistsplunkdevwe;AccountKey=xxx;EndpointSuffix=core.windows.net</connectionString>
         <containerName>splunk-logs-test</containerName>
         <componentName>demoFunction</componentName>
         <blobName>hub-functions-logs/demoFunctionLog</blobName>
